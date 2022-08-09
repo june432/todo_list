@@ -1,0 +1,18 @@
+<h1>할 일 관리 프로그램</h1>
+<div>하고싶은 일 등록하거나 관리</div>
+{% if todo_list %}
+    {% for todo in todo_list %}
+    {% if todo.is_complete == 0 %}
+        <div>(완료) {{todo.todo}} 시간:{{todo.create_date}} <a href="del/">삭제</a> </div>
+    {% else %}
+        <div>(완료) {{todo.todo}} 시간:{{todo.create_date}} <a href="del/">삭제</a> </div>
+    {% endif %}
+    {% endfor %}
+{% endif %}
+
+<h5>할 일 등록</h5>
+<form method="post" action="/todolist/add/">
+    {% csrf_token %}
+    <input type="text" id="todo" name="todo" maxlength='100'>
+    <input type="submit" value="할 일 등록">
+</form>
